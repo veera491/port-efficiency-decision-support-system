@@ -76,11 +76,5 @@ port-efficiency-decision-support-system/
    ```
    The Flask server will start, typically accessible at `http://127.0.0.1:5000/`.
 
-## 📸 Screenshots
-*(TODO: Add screenshots of the interactive maps and analytics dashboards here)*
 
-## 🤝 Contribution Guidelines
-This is an academic project. Contributions, bug reports, and feature requests are welcome via GitHub Issues and Pull Requests. Ensure code aligns with the existing standard and update documentation for any substantial changes.
 
-## 📝 License
-[MIT License](LICENSE) (or add appropriate academic license).
