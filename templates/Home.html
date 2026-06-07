@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Decision Support System for German Port Authority</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/023/291/816/non_2x/the-container-cargo-ship-on-the-sea-with-ai-generated-free-photo.jpg');
+            background-size: 120%;
+            font-size: 20px;
+            background-position: top left;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h1>Decision Support System for German Port Authority</h1>
+        <br>
+        <br>
+        <form id="apiForm">
+            <label for="fromDate">From Date:</label>
+            <input type="date" id="fromDate" name="fromDate" required><br><br>
+            <label for="toDate">To Date:</label>
+            <input type="date" id="toDate" name="toDate" required><br><br>
+            <label for="dataType">Select Analysis Type:</label><br><br>
+            <select id="dataType" name="dataType">
+                <option value="TransitTime">Transit Time Analysis</option>
+                <option value="WaitingTime">Waiting Time Analysis</option>
+                <option value="DwellTime">Dwell Time Analysis</option>
+                <option value="ShipsLocations">Ships Locations Analysis</option>
+                <option value="SpeedAnalysis">Speed Analysis</option>
+                <option value="VesselTypeAnalysis">Vessel Type Analysis</option>
+                <option value="LengthWidthAnalysis">Length & Width Analysis</option>
+                <option value="SourceDestinationAnalysis">Source Destination Analysis</option>
+            </select><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("apiForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const fromDate = document.getElementById("fromDate").value;
+            const toDate = document.getElementById("toDate").value;
+            const dataType = document.getElementById("dataType").value;
+
+            const formData = new FormData();
+            formData.append("fromDate", fromDate);
+            formData.append("toDate", toDate);
+            formData.append("dataType", dataType);
+
+            fetch("/api", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>
